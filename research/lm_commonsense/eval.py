@@ -140,7 +140,7 @@ class SingleRecurrentLanguageModel(object):
     probs_cache = os.path.join(self.log_dir, '{}.probs'.format(test_data_name))
     if os.path.exists(probs_cache):
       print('Reading cached result from {}'.format(probs_cache))
-      with tf.gfile.Open(probs_cache, 'r') as f:
+      with tf.gfile.Open(probs_cache, 'rb') as f:
         probs = pkl.load(f)
     else:
       tf.reset_default_graph()
