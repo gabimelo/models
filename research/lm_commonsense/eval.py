@@ -29,7 +29,10 @@ tf.app.flags.DEFINE_string(
         'Path to directory containing data and model checkpoints.')
 
 
-FLAGS = tf.app.flags.FLAGS
+# TODO revert this commment
+# FLAGS = tf.app.flags.FLAGS
+class FLAGS():
+    data_dir = 'reproduce'
 
 
 class EnsembleLM(object):
@@ -46,7 +49,7 @@ class EnsembleLM(object):
         self.question_ids, self.sentences, self.labels = test_data
         self.all_probs = []  # aggregate single-model prediction here.
 
-    def add_single_model(self, model_name='lm1'):
+    def add_single_model(self, model_name='lm01'):
         """Add a single model into the current ensemble."""
         # Create single LM
         single_lm = SingleRecurrentLanguageModel(self.vocab, model_name)
@@ -180,10 +183,11 @@ def evaluate_ensemble(test_data_name, number_of_lms):
 
 
 def main(_):
-    evaluate_ensemble('pdp60', 1)  # 60%
-    evaluate_ensemble('pdp60', 5)  # 70%
-    evaluate_ensemble('wsc273', 10)  # 61.5%
-    evaluate_ensemble('wsc273', 14)  # 63.7%
+#     evaluate_ensemble('pdp60', 1)  # 60%
+#     evaluate_ensemble('pdp60', 5)  # 70%
+#     evaluate_ensemble('wsc273', 10)  # 61.5%
+#     evaluate_ensemble('wsc273', 14)  # 63.7%
+    evaluate_ensemble('wsc273', 1)
 
 
 if __name__ == '__main__':

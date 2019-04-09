@@ -23,7 +23,10 @@ import os
 import numpy as np
 import tensorflow as tf
 
-FLAGS = tf.flags.FLAGS
+# TODO revert this commment
+# FLAGS = tf.flags.FLAGS
+class FLAGS():
+    data_dir = 'reproduce'
 
 
 class Vocabulary(object):
@@ -357,12 +360,19 @@ def compare_substitutions(question_ids, scorings, mode='full'):
     num_correct_answer = 0
     previous_qid = None
     correctly_answered = False
+    correctly_answered_ids = []
     for predict, qid in zip(prediction_correctness, question_ids):
         if qid != previous_qid:
             previous_qid = qid
             num_correct_answer += int(correctly_answered)
             correctly_answered = True
         correctly_answered = correctly_answered and predict
+        if correctly_answered:
+            correctly_answered_ids.append(qid)
     num_correct_answer += int(correctly_answered)
+    
+    with open('correctly_answered_ids.txt', 'w') as f:
+        for item in correctly_answered_ids:
+            f.write("%s\n" % item)
 
     return num_correct_answer / num_questions
