@@ -184,10 +184,10 @@ def evaluate_ensemble(test_data_name, number_of_lms):
 
 def main(_):
 #     evaluate_ensemble('pdp60', 1)  # 60%
-#     evaluate_ensemble('pdp60', 5)  # 70%
+     evaluate_ensemble('pdp60', 5)  # 70%
 #     evaluate_ensemble('wsc273', 10)  # 61.5%
-#     evaluate_ensemble('wsc273', 14)  # 63.7%
-    evaluate_ensemble('wsc273', 1)
+     evaluate_ensemble('wsc273', 14)  # 63.7%
+#    evaluate_ensemble('wsc273', 1)
 
 
 if __name__ == '__main__':
